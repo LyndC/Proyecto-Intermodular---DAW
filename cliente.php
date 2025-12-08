@@ -1,9 +1,18 @@
+<?php
+session_start();
+//If the user role is not defined or is different from cliente, they do not have permission and are redirected to the login page.
+if (!isset($_SESSION['usuario_rol']) || $_SESSION['usuario_rol'] != 'Cliente') {
+    header("Location: login.html");
+    exit;
+}
+
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
+    <title>Panel Cliente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
@@ -24,6 +33,7 @@
         <li class="nav-item"><a class="nav-link" href="login.html">INICIAR SESIÓN</a></li>
         <li class="nav-item"><a class="nav-link" href="contacto.html">CONTACTO</a></li>
         <li class="nav-item"><a class="nav-link" href="reservas.html">RESERVE AHORA</a></li>
+        
         <!--Botón para seleccionar el idioma-->
          <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,36 +55,36 @@
 <nav aria-label="breadcrumb" class="bg-white shadow-sm">
   <ol class="breadcrumb container py-2">
     <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-    <li class="breadcrumb-item active">Iniciar sesión</li>
+    <li class="breadcrumb-item active">Panel Cliente</li>
   </ol>
 </nav>
 
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="card shadow-sm p-4" style="max-width: 420px; width: 100%;">
-        <h3 class="text-center mb-4">Iniciar sesión</h3>
-
-        <form>
-            <div class="mb-3">
-                <label class="form-label">Correo electrónico</label>
-                <input type="email" class="form-control" placeholder="ejemplo@mail.com" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Contraseña</label>
-                <input type="password" class="form-control" placeholder="********" required>
-            </div>
-
-            <!-- Botón -->
-            <div class="d-grid">
-                <button type="submit" class="btn btn-secondary">Entrar</button>
-            </div>
-
-            <!-- Para registro de nuevo usuario -->
-            <p class="text-center mt-3 mb-0">
-                ¿No tienes cuenta?
-                <a href="#" class="text-primary">Regístrate aquí</a>
-            </p>
-        </form>
+<body class="bg-light">
+<div class="container mt-5">
+  <h1 class="text-center">Bienvenido Cliente, <?php echo $_SESSION['usuario_nombre']; ?></h1>
+  <div class="row mt-4 justify-content-center">
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Reservas</h5>
+          <p class="card-text">Haz nuevas reservas o consulta las existentes.</p>
+          <a href="misreservas.php" class="btn btn-secondary">Ir</a>
+        </div>
+      </div>
     </div>
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Perfil</h5>
+          <p class="card-text">Edita tus datos personales y preferencias.</p>
+          <a href="perfilCliente.php" class="btn btn-secondary">Ir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+  <a href="logout.php" class="btn btn-danger mt-4">Cerrar Sesión</a>
+</div>
 </div>
 
 <!-- Footer -->
