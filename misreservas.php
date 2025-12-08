@@ -89,12 +89,12 @@ try {
                         <td><?php echo htmlspecialchars($reserva['fecha_entrada']); ?></td>
                         <td><?php echo htmlspecialchars($reserva['fecha_salida']); ?></td>
                         <td><span class="badge bg-<?php 
-                            // Asignar colores según el estado
+                            // assign colors according to their status
                             if ($reserva['estado'] == 'Confirmada') echo 'success';
                             else if ($reserva['estado'] == 'Pendiente') echo 'warning';
                             else if ($reserva['estado'] == 'Check-in') echo 'primary';
                             else if ($reserva['estado'] == 'Check-out') echo 'info';
-                            else echo 'danger'; // Cancelada
+                            else echo 'danger'; // Cancel
                         ?>"><?php echo htmlspecialchars($reserva['estado']); ?></span></td>
                      <td>
     <a href="ver_detalles.php?id=<?php echo $reserva['id_reserva']; ?>" class="btn btn-sm btn-info" title="Ver Detalles">
@@ -102,7 +102,7 @@ try {
     </a>
     
     <?php 
-    // 2. Lógica para EDITAR y CANCELAR: Solo si la reserva está activa
+    // Logic for EDIT and CANCEL: Only if the reservation is active
     if ($reserva['estado'] == 'Pendiente' || $reserva['estado'] == 'Confirmada'): 
     ?>
         <a href="editar_reserva.php?id=<?php echo $reserva['id_reserva']; ?>" class="btn btn-sm btn-warning" title="Editar">

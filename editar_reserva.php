@@ -2,10 +2,10 @@
 session_start();
 require_once 'conectar_db.php';
 
-// 1. Control de Acceso y Obtener ID
+// access control and obtain ID
 if (!isset($_SESSION['usuario_rol']) || $_SESSION['usuario_rol'] != 'Cliente' || !isset($_GET['id'])) {
     $_SESSION['error'] = "ERROR: Acceso denegado o ID de reserva faltante. Revise la URL.";
-    header("Location: misreservas.php");
+    header("Location: login.html");
     exit;
 }
 
@@ -18,7 +18,7 @@ $reserva = null;
 $categorias = [];
 
 try {
-    // 2. Cargar Datos de la Reserva
+    // load reservation details
     $sqlReserva = "SELECT id_reserva, id_habitacion, fecha_entrada, fecha_salida, huespedes, comentarios, id_categoria 
                    FROM reservas 
                    JOIN habitaciones ON reservas.id_habitacion = habitaciones.id_habitacion 
@@ -32,7 +32,7 @@ try {
         throw new Exception("Reserva no válida para edición o ya ha comenzado.");
     }
 
-    // 3. Cargar todas las Categorías para el dropdown
+    // load all categories for the dropdown
     $stmtCat = $pdo->query("SELECT id_categoria, nombre, capacidad_maxima, precio_base FROM categorias_habitacion ORDER BY id_categoria");
     $categorias = $stmtCat->fetchAll(PDO::FETCH_ASSOC);
 

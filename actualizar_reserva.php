@@ -2,7 +2,7 @@
 session_start();
 require_once 'conectar_db.php';
 
-// 1. Control de Acceso y Datos
+// access control
 if ($_SERVER["REQUEST_METHOD"] != "POST" || 
     !isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] != 'Cliente' || !isset($_POST['id_reserva'])) {
     header("Location: login.html");
@@ -13,7 +13,7 @@ $pdo = conectar();
 $id_cliente = $_SESSION['usuario_id'];
 $id_reserva = $_POST['id_reserva'];
 
-// Datos del formulario
+// dorm data
 $fecha_entrada = $_POST['fecha_entrada'] ?? null;
 $fecha_salida = $_POST['fecha_salida'] ?? null;
 $id_categoria_nueva = $_POST['id_categoria'] ?? null;
@@ -21,7 +21,7 @@ $huespedes = intval($_POST['huespedes'] ?? 0);
 $comentarios = trim($_POST['comentarios'] ?? '');
 
 try {
-    // 2. Validación de Fechas y Capacidad (similar a procesar_reserva.php)
+    // validate dates and capacity 
     if (empty($fecha_entrada) || empty($fecha_salida) || empty($id_categoria_nueva) || $huespedes < 1) {
         throw new Exception("Por favor, complete todos los campos requeridos.");
     }
@@ -36,7 +36,7 @@ try {
     $fecha_entrada_sql = $dt_entrada->format('Y-m-d');
     $fecha_salida_sql = $dt_salida->format('Y-m-d');
 
-    // 3. Obtener Capacidad Máxima
+    // Get Capacity Max
     $stmtCat = $pdo->prepare("SELECT capacidad_maxima FROM categorias_habitacion WHERE id_categoria = ?");
     $stmtCat->execute([$id_categoria_nueva]);
     $categoria = $stmtCat->fetch();
@@ -48,10 +48,9 @@ try {
         throw new Exception("El número de huéspedes excede la capacidad máxima de esta categoría ({$categoria['capacidad_maxima']}).");
     }
 
-    // 4. LÓGICA CLAVE: BUSCAR HABITACIÓN DISPONIBLE (EXCLUYENDO LA RESERVA ACTUAL)
+    //  KEY LOGIC: SEARCH FOR AVAILABLE ROOM (EXCLUDING CURRENT RESERVATION)
     
-    // Primero, verificamos si la habitación actual de la reserva sigue disponible para las nuevas fechas/categoría.
-    // Si la categoría ha cambiado, necesitamos encontrar una nueva.
+    // First, we check if the current room reservation is still available for the new dates/category.If the category has changed, we need to find a new one.
     
     $sqlDisponibilidad = "
         SELECT h.id_habitacion
@@ -79,13 +78,13 @@ try {
     
     $habitacionDisponible = $stmtDisp->fetch(PDO::FETCH_ASSOC);
 
-    if (!$habitacionDisponible) {
+    if (!$habitacionDisponible) { // error capture
         throw new Exception("Lo sentimos, no hay habitaciones disponibles en esa categoría para las fechas solicitadas.");
     }
 
     $id_habitacion_seleccionada = $habitacionDisponible['id_habitacion'];
 
-    // 5. ACTUALIZACIÓN DE LA RESERVA (TRANSACCIÓN)
+    // update transaction
     $pdo->beginTransaction();
 
     $sqlActualizar = "
@@ -109,7 +108,7 @@ try {
         ':id_cliente' => $id_cliente
     ]);
     
-    $pdo->commit();
+    $pdo->commit();// confirmation 
 
     $_SESSION['success'] = "¡Reserva #{$id_reserva} actualizada con éxito!";
     header("Location: misreservas.php");

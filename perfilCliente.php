@@ -2,7 +2,7 @@
 session_start();
 require_once 'conectar_db.php';
 
-// 1. Control de Acceso (Similar al panel)
+// acces control
 if (!isset($_SESSION['usuario_rol']) || $_SESSION['usuario_rol'] != 'Cliente') {
     header("Location: login.html");
     exit;
@@ -13,7 +13,7 @@ $pdo = conectar();
 $error_msg = '';
 $success_msg = '';
 
-// --- FASE 1: PROCESAMIENTO DE LA ACTUALIZACIÓN (UPDATE) ---
+// update processing
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefono = trim($_POST['telefono'] ?? '');
     $direccion = trim($_POST['direccion'] ?? '');
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $pdo->beginTransaction();
 
-        // 1. Actualizar datos en la tabla CLIENTES
+        //update data in table CLIENTES
         $sqlClientes = "UPDATE clientes 
                         SET telefono = :telefono, direccion = :direccion, ciudad = :ciudad 
                         WHERE id_cliente = :id_cliente";
@@ -43,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// --- FASE 2: LECTURA DE DATOS (READ) ---
+// Read data
 try {
-    // Consulta JOIN para obtener todos los datos del usuario y cliente
+    // query for obtain data from client and user
     $sqlRead = "SELECT 
                     u.nombre_usuario, u.email AS user_email,
                     c.email AS cliente_email, c.documento_identidad, c.telefono, c.direccion, c.ciudad
@@ -57,14 +57,14 @@ try {
     $stmtRead->execute([':id' => $usuario_id]);
     $cliente = $stmtRead->fetch(PDO::FETCH_ASSOC);
 
-    // Si por alguna razón la fila no existe (error de datos), redirigir
+    // If for some reason the row does not exist (data error), redirect
     if (!$cliente) {
         throw new Exception("Datos de perfil no encontrados.");
     }
     
 } catch (Exception $e) {
     $_SESSION['error'] = "Error al cargar datos: " . $e->getMessage();
-    header("Location: cliente_panel.php"); // Volver al panel si hay error
+    header("Location: cliente.php"); // come back to cliente.php
     exit;
 }
 ?>

@@ -2,7 +2,7 @@
 session_start();
 require_once 'conectar_db.php';
 
-// 1. Control de Acceso y Obtener ID
+//Acces control
 if (!isset($_SESSION['usuario_rol']) || $_SESSION['usuario_rol'] != 'Cliente' || !isset($_GET['id'])) {
     $_SESSION['error'] = "ERROR: Acceso denegado o ID de reserva faltante. Revise la URL.";
     header("Location: misreservas.php");
@@ -15,8 +15,8 @@ $id_cliente = $_SESSION['usuario_id'];
 $detalle = null;
 
 try {
-    // 2. Consulta principal para obtener TODOS los detalles de la reserva.
-    // Usamos JOIN para traer datos de Habitaciones y Categorías.
+    // Main query to obtain ALL reservation details.
+    // We use JOIN to retrieve data for Rooms and Categories.
     $sqlDetalle = "
         SELECT 
             r.id_reserva, r.fecha_reserva, r.fecha_entrada, r.fecha_salida, r.huespedes, r.estado, r.comentarios,
@@ -35,13 +35,13 @@ try {
         throw new Exception("Reserva no encontrada o no le pertenece.");
     }
 
-} catch (Exception $e) {
+} catch (Exception $e) {//error capture
     $_SESSION['error'] = "Error al cargar los detalles: " . $e->getMessage();
     header("Location: misreservas.php");
     exit;
 }
 
-// Cálculo simple de noches y precio
+// Simple calculation of nights and price
 $dt_entrada = new DateTime($detalle['fecha_entrada']);
 $dt_salida = new DateTime($detalle['fecha_salida']);
 $noches = $dt_entrada->diff($dt_salida)->days;

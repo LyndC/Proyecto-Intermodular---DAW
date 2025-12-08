@@ -1,12 +1,11 @@
 <?php
 session_start();
-// Asegúrate de que este archivo contiene la función 'conectar()' que devuelve un objeto PDO.
 require_once "conectar_db.php"; 
 
-// 1. Definir los roles permitidos para este panel
+// definition role
 $roles_permitidos = ['Recepcionista', 'Gerencia', 'Contabilidad', 'Mantenimiento'];
 
-// 2. Control de Acceso: Verifica la sesión y el rol
+// acces control
 if (!isset($_SESSION['usuario_rol']) || !in_array($_SESSION['usuario_rol'], $roles_permitidos)) {
     header("Location: login.php");
     exit;
@@ -14,22 +13,20 @@ if (!isset($_SESSION['usuario_rol']) || !in_array($_SESSION['usuario_rol'], $rol
 
 $rol_actual = $_SESSION['usuario_rol'];
 $nombre_usuario = $_SESSION['usuario_nombre'];
-$datos_dinamicos = []; // Array para almacenar datos de la BD
+$datos_dinamicos = []; // Array for save datas of the BD
 
-// =========================================================
-// 3. BLOQUE DE OBTENCIÓN DE DATOS DINÁMICOS (REQUIERE PDO)
-// =========================================================
+
 try {
     $pdo = conectar();
     
-    // EJEMPLO: Obtener el conteo de reservas pendientes (solo para Recepcionista)
+    //Recepcionista
     if ($rol_actual == 'Recepcionista') {
         $sql_reservas = "SELECT COUNT(*) FROM reservas WHERE estado = 'Pendiente'";
         $stmt = $pdo->query($sql_reservas);
         $datos_dinamicos['reservas_pendientes'] = $stmt->fetchColumn();
     }
     
-    // EJEMPLO: Obtener el conteo de tareas de mantenimiento (solo para Mantenimiento)
+    // Mantenimiento
     if ($rol_actual == 'Mantenimiento') {
         $sql_tareas = "SELECT COUNT(*) FROM tareas WHERE estado = 'Asignada'";
         $stmt = $pdo->query($sql_tareas);
@@ -43,12 +40,9 @@ try {
     $datos_dinamicos['error'] = "No se pudieron cargar los datos dinámicos.";
 }
 
-// =========================================================
-// 4. DEFINICIÓN DE PANELES BASADA EN EL ROL Y DATOS OBTENIDOS
-// =========================================================
 $paneles = [];
 
-// Panel de Reservas
+// Reservations
 if (in_array($rol_actual, ['Recepcionista', 'Gerencia', 'Contabilidad'])) {
     $conteo = $datos_dinamicos['reservas_pendientes'] ?? 0;
     $descripcion = "Consulta y administra las reservas. Tienes **$conteo** pendientes.";
@@ -59,7 +53,7 @@ if (in_array($rol_actual, ['Recepcionista', 'Gerencia', 'Contabilidad'])) {
     ];
 }
 
-// Panel de Habitaciones
+// rooms
 if (in_array($rol_actual, ['Recepcionista', 'Mantenimiento'])) {
     $paneles['Habitaciones'] = [
         'descripcion' => 'Ver disponibilidad y actualizar estado de habitaciones.',
@@ -68,7 +62,7 @@ if (in_array($rol_actual, ['Recepcionista', 'Mantenimiento'])) {
     ];
 }
 
-// Panel de Tareas de Mantenimiento
+//  Mantenimiento
 if ($rol_actual == 'Mantenimiento') {
     $conteo = $datos_dinamicos['tareas_asignadas'] ?? 0;
     $descripcion = "Revisa y marca como completadas las tareas. Hay **$conteo** asignadas.";
@@ -79,7 +73,7 @@ if ($rol_actual == 'Mantenimiento') {
     ];
 }
 
-// Panel de Finanzas e Informes (Gerencia/Contabilidad)
+// Gerencia/Contabilidad
 if (in_array($rol_actual, ['Gerencia', 'Contabilidad'])) {
     $paneles['Informes y Finanzas'] = [
         'descripcion' => 'Acceso a balances, facturación e informes de rendimiento.',
@@ -88,7 +82,7 @@ if (in_array($rol_actual, ['Gerencia', 'Contabilidad'])) {
     ];
 }
 
-// Resto del código HTML...
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
