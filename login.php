@@ -4,7 +4,7 @@ require 'conectar_db.php';//database connection
 
 $email = "";
 $password = "";
-// acces control
+// access control
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email'] ?? "");
     $password = trim($_POST['password'] ?? "");
