@@ -1,0 +1,138 @@
+/*Espacio superior del body */
+body {
+    padding-top: 90px;
+}
+
+/* Selector específico para la Navbar */
+/* Al poner 'nav.navbar' (etiqueta + clase) */
+nav.navbar {
+    height: 80px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Selector específico para el Logo */
+/* Buscamos la imagen específicamente dentro del brand de la navbar */
+.navbar-brand img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Selector para los enlaces */
+/* 'nav.navbar .nav-link' es muy específico y no necesita !important */
+nav.navbar .nav-link {
+    font-size: 0.85rem;
+    line-height: 60px; /* Centra el texto verticalmente */
+    text-transform: uppercase;
+}
+footer {
+    border-top: 1px solid #333; /* Una línea sutil para separar */
+}
+
+footer p {
+    margin: 0 !important;
+    font-size: 0.85rem;
+}
+
+footer a:hover {
+    color: #ffc107 !important; /* El color amarillo del botón de reserva al pasar el ratón */
+    transition: 0.3s;
+}
+
+/* Ajuste para que los iconos no sean gigantes y no estiren el alto */
+footer .bi {
+    vertical-align: middle;
+}
+/* --- Booking Calendar Styles (DIW) --- */
+#calendario { 
+    width: 100%; 
+    border-collapse: separate; 
+    border-spacing: 0;
+    background: white; 
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#calendario th { 
+    background: #212529; 
+    color: white;
+    padding: 12px; 
+    border: 1px solid #343a40; 
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+#calendario td { 
+    padding: 20px; 
+    border: 1px solid #dee2e6; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: all 0.2s ease-in-out; 
+    font-weight: 500;
+}
+
+/* Day with no number */
+#calendario td.empty { 
+    background: #fcfcfc; 
+    cursor: default; 
+}
+
+/* Hover effect for interactive days */
+#calendario td:not(.empty):hover { 
+    background-color: #f0f7ff; 
+    color: #0d6efd; 
+    transform: scale(1.05);
+    box-shadow: inset 0 0 0 1px #0d6efd;
+}
+
+/* Selected state (When user clicks) */
+#calendario td.seleccionado { 
+    background-color: #0d6efd !important; 
+    color: white !important; 
+    font-weight: bold; 
+    box-shadow: 0 4px 6px rgba(13, 110, 253, 0.3);
+}
+
+#calendar-wrapper {
+    border-radius: 10px;
+    border: 1px solid #eee;
+    padding: 10px;
+}
+/* Styling for the password toggle eye */
+.password-toggle-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+    color: #6c757d;
+}
+
+.password-toggle-icon:hover {
+    color: #212529;
+}
+
+/* --- En tu archivo estilos.css externo --- */
+
+@media print {
+    /* Ocultar elementos innecesarios (menús, botones, footer) */
+    .navbar, .btn, .no-print, footer {
+        display: none !important;
+    }
+
+    /* Forzar que el color verde aparezca en el papel */
+    .text-success {
+        color: #198754 !important;
+        -webkit-print-color-adjust: exact; /* Para Chrome/Edge */
+        print-color-adjust: exact;
+    }
+
+    /* Ajustar el contenedor para que ocupe toda la hoja */
+    .container, .card {
+        width: 100% !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+}

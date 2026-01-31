@@ -1,0 +1,41 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs y temporales
+*.log
+*.tmp
+*.bak
+
+# Configuración sensible
+config.php
+.env
+
+# XAMPP / MySQL
+mysql/data/
+xampp/tmp/
+xampp/logs/
+
+# Archivos de caché
+*.cache
+*.session
+
+# IDEs
+.vscode/
+.idea/
+
+# composer o node
+vendor/
+node_modules/
+
+# Bases de Datos (Exportaciones SQL)
+*.sql
+*.sql.gz
+*.sqlite
+
+# Carpetas de datos locales (Si usas XAMPP/Docker)
+db/data/
+mysql_data/
+
+reservas_hotel.sql
+pasarela_pago.php

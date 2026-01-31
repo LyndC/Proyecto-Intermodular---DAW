@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<!--Navbar-->
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="logoRC.png" alt="Logo" width="120"> Hotel Reina Cristina
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">INICIO</a></li>
+        <li class="nav-item"><a class="nav-link" href="habitaciones.html">HABITACIONES</a></li>
+        <li class="nav-item"><a class="nav-link" href="instalaciones.html">INSTALACIONES</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html">INICIAR SESIÓN</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacto.html">CONTACTO</a></li>
+        <li class="nav-item"><a class="nav-link" href="reservas.html">RESERVE AHORA</a></li>
+        <!--Botón para seleccionar el idioma-->
+         <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-globe me-1"></i> ES
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+      <li><a class="dropdown-item" href="?lang=es">Español</a></li>
+      <li><a class="dropdown-item" href="?lang=en">English</a></li>
+      <li><a class="dropdown-item" href="?lang=fr">Français</a></li>
+    </ul>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--Breadcrumb-->
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Habitaciones</li>
+  </ol>
+</nav>
+
+<!--Lista de Habitaciones (card horizontal)-->
+<div class="container-fluid">
+<div class="card mb-3 w-100">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="SuiteGold.jpg" class="img-fluid rounded-start h-100" alt="SuiteGold" style="object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Suite Gold</h5>
+        <p class="card-text">La cómoda y amplia Suite Gold, de aproximadamente 52 m2, 
+            está pensada para sorprender a los viajeros más exigentes, y diseñada para ofrecer una estancia y
+            un servicio de categoría superior. Esta habitación está decorada en un estilo fresco, 
+            agradable y con una iluminación cálida. Dispone de una cama King size, un gran baño con jacuzzi con vistas panorámicas al mar 
+            y ducha de hidromasaje, servicio de cafetera, mini nevera, una amplia terraza amueblada con vistas al mar, aire acondicionado, 
+            TV-Sat y teléfono. Perfecta para disfrutar de sus ansiados momentos de relax.</p>
+            <a href="reservas.html" class="btn btn-outline-warning">Reservar</a>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+<div class="card mb-3 w-100">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="SuiteSiver.jpg" class="img-fluid rounded-start h-100" alt="SuiteSilver" style="object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Suite Silver</h5>
+        <p class="card-text">La Suite Silver de 38m2, ofrece un oasis de tranquilidad, comodidad y lujo rodeado de decoración sofisticada, 
+            diseñada para gustar a todo el mundo. Situada en las plantas superiores del hotel y orientada hacia al mar, ofrece una cama King Size, 
+            un gran baño con jacuzzi y ducha de hidromasaje, servicio de cafetera y mini nevera, además de una amplia terraza con vistas al mar, 
+            aire acondicionado, TV-Sat y teléfono.</p>
+            <a href="reservas.html" class="btn btn-outline-warning">Reservar</a>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+<div class="card mb-3 w-100">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="SuiteSuperior.jpg" class="img-fluid rounded-start h-100" alt="SuiteSuperior" style ="object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Suite Superior</h5>
+        <p class="card-text">Estas suites son sin duda, las estancias con más encanto y más románticas del Hotel Reina Cristina. Su ubicación privilegiada, 
+            en la sexta planta del Hotel, ofrece unas magníficas vistas panorámicas del mar Mediterráneo, y un extra de intimidad 
+            para las personas que se alojen en ella, siendo ideal para parejas. Su cuidada decoración moderna y sus instalaciones, como la cama King Size, 
+            un jacuzzi para dos personas y una gran terraza privada con mobiliario exterior, hacen de ella una habitación muy especial. 
+            Disponen de aire acondicionado, TV-Sat, teléfono, servicio de cafetera y mini nevera.</p>
+        <a href ="reservas.html" class="btn btn-outline-warning">Reservar</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="card mb-3 w-100">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="HabitaciónDoble.jpg" class="img-fluid rounded-start" alt="HabitaciónDoble" style ="object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Habitación Doble de Lujo</h5>
+        <p class="card-text">Nuestra Habitación Deluxe (24–25 m²) combina confort y tranquilidad con un diseño moderno. 
+             Ofrece camas queen size o dobles, baño con ducha efecto lluvia y productos exclusivos, además de todas las comodidades: 
+             WiFi gratuito, Smart TV de 40”, aire acondicionado, mini nevera y caja fuerte. 
+             Ideal para un descanso reparador con estilo.</p>
+        <a href ="reservas.html" class="btn btn-outline-warning">Reservar</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="card mb-3 w-100">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="HabitaciónDobleEstandar.jpg" class="img-fluid rounded-start" alt="HabitaciónDobleEstandar" style ="object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Habitación Doble Estándar</h5>
+        <p class="card-text">Habitaciones dobles modernas, cómodas y funcionales, con dos camas individuales o cama de matrimonio 
+            (posibilidad cama extra). Además, disponen de terraza, baño privado, aire acondicionado, TV-Sat y teléfono. 
+            La opción perfecta para parejas o para un viaje de negocios.</p>
+        <a href ="reservas.html" class="btn btn-outline-warning">Reservar</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="card mb-3 w-100">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="HabitaciónDobleEconómica.jpg" class="img-fluid rounded-start" alt="HabitaciónDobleEconómica" style ="object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Habitación Doble Económica</h5>
+        <p class="card-text">Agradables habitaciones dobles, sencillas y sin reformar, con bonitas vistas al exterior. 
+            Están equipadas con dos camas individuales. Además, cuenta con baño privado, terraza, TV-Sat y aire acondicionado, 
+            para un máximo confort.</p>
+        <a href ="reservas.html" class="btn btn-outline-warning">Reservar</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="card mb-3 w-100">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="HabitaciónIndividual.jpg" class="img-fluid rounded-start" alt="HabitaciónIndividual" style ="object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Habitación Individual Superior</h5>
+        <p class="card-text">Nuestra Habitación Individual Superior ofrece un espacio cómodo y funcional para quienes viajan solos. 
+            Con cama individual, baño privado con ducha efecto lluvia y productos exclusivos, además de WiFi gratuito, Smart TV, aire acondicionado y mini nevera, 
+            es la opción ideal para disfrutar de una estancia práctica y relajante con todas las comodidades esenciales.</p>
+        <a href ="reservas.html" class="btn btn-outline-warning">Reservar</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="card mb-3 w-100">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="HabitaciónIndividualEstandar.jpg" class="img-fluid rounded-start" alt="HabitaciónIndividualEstandar" style ="object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Habitación Individual Estándar</h5>
+        <p class="card-text">Habitaciones de uso individual en Hotel Samba, siendo ideal para clientes business y personas que viajan solas. El dormitorio, 
+            a pesar de ser pequeño, es muy acogedor y confortable. Además, cuenta con una terraza con bonitas vistas, baño privado, aire acondicionado, 
+            TV-Sat y teléfono.</p>
+       <a href ="reservas.html" class="btn btn-outline-warning">Reservar</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="card mb-3 w-100">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="HabitaciónAdaptada.jpg" class="img-fluid rounded-start" alt="HabitaciónAdaptada" style ="object-fit: cover;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Habitación Adaptada</h5>
+        <p class="card-text">El Hotel Reina Cristina ofrece habitaciones adaptadas para mayor confort de nuestros huéspedes con movilidad reducida 
+            o necesidad de silla de ruedas. Habitaciones amplias de 20 m², con baño adaptado. Cuentan con una instalación de óptima funcionalidad, 
+            diseño renovado, terraza con vistas al exterior, aire acondicionado, TV-Sat, teléfono y máximo confort.</p>
+        <a href ="reservas.html" class="btn btn-outline-warning">Reservar</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer class="bg-dark text-white text-center p-4 mt-5">
+  <img src="logoRC.png" width="120"><br>
+  © 2025 Hotel Reina Cristina
+  <div class="mt-3 d-flex justify-content-center gap-4">
+    <a href="#" class="text-white fs-4">
+      <i class="bi bi-twitter"></i>
+    </a>
+    <a href="#" class="text-white fs-4">
+      <i class="bi bi-instagram"></i>
+    </a>
+    <a href="#" class="text-white fs-4">
+      <i class="bi bi-facebook"></i>
+    </a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
