@@ -44,4 +44,4 @@ Para el desarrollo de este proyecto se han aplicado estándares de la industria:
 Este proyecto fue desarrollado con fines educativos para el módulo intermodular de DAW.
 
 ![alt text](image.png)
-© 2025 - Desarrollado por [Lynd]
+© 2025 - Desarrollado por Lynd
